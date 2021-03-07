@@ -26,21 +26,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: RichText(
-              text: TextSpan(
-            children: [
-              TextSpan(text: 'All'),
-              TextSpan(
-                  text: 'Map', style: TextStyle(fontWeight: FontWeight.bold))
-            ],
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(color: Colors.white),
-          )),
+      appBar: AppBar(
+        title: RichText(
+            text: TextSpan(
+          children: [
+            TextSpan(text: 'All'),
+            TextSpan(text: 'Map', style: TextStyle(fontWeight: FontWeight.bold))
+          ],
+          style: Theme.of(context)
+              .textTheme
+              .headline5
+              .copyWith(color: Colors.white),
+        )),
+      ),
+      body: Stack(children: [
+        Center(
+          child: Text('Maps is here',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4
+                  .copyWith(color: Colors.grey)),
         ),
-        body: Container(
+        Positioned(
           child: Column(
             children: [
               Padding(
@@ -52,6 +59,41 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-        ));
+        ),
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: SafeArea(
+                child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Card(
+                elevation: 2.0,
+                child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.store),
+                          title: Text('Cafe Name'),
+                          subtitle: Text('Cate Description'),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              child: Text('Show Details'),
+                              onPressed: () {
+                                print('"Show Details" is tapped');
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    )),
+              ),
+            )))
+      ]),
+    );
   }
 }
